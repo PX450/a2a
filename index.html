@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Reveal System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Start Screen (Click anywhere to begin) -->
+    <div id="start-screen">
+        <div class="start-content">
+            <div id="typewriter-text"></div>
+        </div>
+    </div>
+
+    <!-- Hidden Reveal Message & Particles -->
+    <div id="reveal-container">
+        <div id="particles-container"></div>
+        <div class="glow-text">I Love You, Riya</div>
+    </div>
+
+    <!-- The Paper Layer (Canvas for Burn Effect) -->
+    <canvas id="paper-canvas"></canvas>
+
+    <!-- The Candle -->
+    <div id="candle-container">
+        <div id="flame" class="unlit">
+            <div class="inner-flame"></div>
+        </div>
+        <div id="wick"></div>
+        <div id="wax">
+            <div class="wax-drip"></div>
+        </div>
+    </div>
+
+    <!-- The Ignition Spark (Lights the candle) -->
+    <div id="ignition-spark"></div>
+
+    <!-- The Blow Spark (Hits the paper) -->
+    <div id="spark"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

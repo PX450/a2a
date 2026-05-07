@@ -1,0 +1,267 @@
+:root {
+    --bg-color: #050505;
+    --flame-core: #fffde0;
+    --flame-outer: #ff9d00;
+    --spark-glow: #ff4500;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Start Screen */
+#start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    transition: opacity 1.5s ease;
+    cursor: pointer;
+}
+
+.start-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+#typewriter-text {
+    font-family: 'Special Elite', monospace;
+    font-size: 1.6rem;
+    color: #e0d8c8;
+    text-shadow: 0 0 8px rgba(224, 216, 200, 0.4);
+    white-space: pre-wrap;
+    text-align: left;
+    max-width: 700px;
+    line-height: 1.8;
+    margin: 0 auto;
+}
+
+#typewriter-text::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Reveal Container */
+#reveal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background: radial-gradient(circle at center, #2a0800 0%, #000000 100%);
+}
+
+.glow-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 8rem;
+    color: #fff;
+    text-shadow: 0 0 20px #ff4500, 0 0 40px #ff0000, 0 0 80px #ff9d00;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+    animation: breathe 4s infinite alternate;
+    z-index: 2;
+}
+
+@keyframes breathe {
+    0% { text-shadow: 0 0 20px #ff4500, 0 0 40px #ff0000; transform: scale(1); }
+    100% { text-shadow: 0 0 30px #ff4500, 0 0 60px #ff0000, 0 0 100px #ff9d00; transform: scale(1.02); }
+}
+
+/* Act 4 Finale Animations */
+.glow-text.finale {
+    animation: finalePulse 3s ease-in-out infinite alternate, floatText 4s ease-in-out infinite alternate;
+}
+
+@keyframes finalePulse {
+    0% { text-shadow: 0 0 30px #ff4500, 0 0 60px #ff0000, 0 0 100px #ff9d00; transform: scale(1); }
+    100% { text-shadow: 0 0 50px #ff9d00, 0 0 90px #ff4500, 0 0 150px #fff; transform: scale(1.08); }
+}
+
+@keyframes floatText {
+    0% { margin-top: 0px; }
+    100% { margin-top: -30px; }
+}
+
+/* Particles Container */
+#particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.magic-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp 3s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    20% { opacity: 1; transform: translateY(-30px) scale(1.5); }
+    80% { opacity: 0.8; transform: translateY(-120px) scale(1); }
+    100% { transform: translateY(-150px) scale(0); opacity: 0; }
+}
+
+/* Paper Canvas */
+#paper-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Candle */
+#candle-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 1s;
+}
+
+#wax {
+    width: 45px;
+    height: 150px;
+    background: linear-gradient(to right, #e0d8c8, #f5f0e6, #c2b8a3);
+    border-radius: 4px 4px 8px 8px;
+    position: relative;
+    box-shadow: inset 0 -10px 20px rgba(0,0,0,0.5), 0 15px 30px rgba(0,0,0,0.9);
+}
+
+.wax-drip {
+    position: absolute;
+    top: 0;
+    left: -5px;
+    width: 12px;
+    height: 40px;
+    background: #e0d8c8;
+    border-radius: 10px;
+}
+
+#wick {
+    width: 4px;
+    height: 12px;
+    background: #2a2a2a;
+    border-radius: 2px;
+    margin-top: -5px;
+    z-index: 2;
+}
+
+#flame {
+    width: 20px;
+    height: 45px;
+    background: var(--flame-outer);
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    position: absolute;
+    top: -50px;
+    box-shadow: 0 0 40px 15px rgba(255, 157, 0, 0.7), 0 0 80px 30px rgba(255, 69, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transform-origin: bottom center;
+}
+
+#flame.unlit {
+    opacity: 0;
+    transform: scale(0);
+}
+
+#flame.igniting {
+    animation: burst 1s ease-out forwards, flicker 0.1s infinite alternate 1s;
+}
+
+@keyframes burst {
+    0% { transform: scale(0); opacity: 0; box-shadow: 0 0 0px 0px rgba(255, 157, 0, 0); }
+    40% { transform: scale(1.6); opacity: 1; box-shadow: 0 0 120px 50px rgba(255, 200, 0, 1); }
+    100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 40px 15px rgba(255, 157, 0, 0.7); }
+}
+
+.inner-flame {
+    width: 10px;
+    height: 20px;
+    background: var(--flame-core);
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    margin-bottom: 2px;
+    box-shadow: 0 0 15px #fff;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
+    50% { transform: scale(1.05) rotate(1deg); opacity: 1; }
+    100% { transform: scale(0.95) rotate(-2deg); opacity: 0.8; }
+}
+
+.extinguished {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    transition: all 0.5s ease;
+}
+
+/* Ignition Spark */
+#ignition-spark {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px #ffaa00, 0 0 30px 10px rgba(255, 157, 0, 0.8);
+    pointer-events: none;
+    z-index: 25;
+    opacity: 0;
+}
+
+/* Spark */
+#spark {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px var(--spark-glow), 0 0 30px 10px rgba(255, 157, 0, 0.8);
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+}
